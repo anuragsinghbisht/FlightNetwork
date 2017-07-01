@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack');
 
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
@@ -15,7 +16,11 @@ const ExtractTextPluginConfig = new ExtractTextPlugin({
 })
 
 module.exports = {
-  entry: './app/index.js',
+  entry: [
+    'font-awesome/scss/font-awesome.scss',
+    'bootstrap/scss/bootstrap.scss',
+    './app/index.js'
+  ],
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js'
@@ -24,13 +29,26 @@ module.exports = {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       {
-        test: /\.css$/,
+        test: /\.(sass|scss|css)$/,
         loader: ExtractTextPluginConfig.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
+          use: 'css-loader!sass-loader'
         })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+        loader: 'url-loader'
       }
     ]
   },
-  plugins: [HTMLWebpackPluginConfig, ExtractTextPluginConfig]
+  plugins: [
+    HTMLWebpackPluginConfig,
+    ExtractTextPluginConfig,
+    new webpack.ProvidePlugin({ // inject ES5 modules as global vars
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Tether: 'tether'
+    })
+  ]
 }

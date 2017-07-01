@@ -1,8 +1,15 @@
 import React from 'react';
+import HeaderComponent from '../components/header.component';
+import MovieListComponent from '../components/movie-list.component';
 
 const Home = () => {
   return (
-    <h1>Hello</h1>
+    <div>
+      <HeaderComponent />
+      <div className="container-fluid mt-5">
+        <MovieListComponent />
+      </div>
+    </div>
   )
 };
 

@@ -17,12 +17,11 @@ class SortByBudgetComponent extends React.Component {
     this.props.sortMoviesByBudget(this.state.direction);
   }
   render() {
+    const sortClass = this.state.direction === null ? "fa-sort"
+                        : this.state.direction ? "fa-sort-numeric-desc" : "fa-sort-numeric-asc";
     return (
       <button className="btn btn-outline-secondary" onClick={this.toggleSort}>
-        {
-          this.state.direction !== null &&
-          <i className={this.state.direction ? "fa fa-sort-numeric-desc pr-2" : "fa fa-sort-numeric-asc pr-2"}></i>
-        }
+        <i className={"fa pr-2 "+sortClass}></i>
         <span>Budget</span>
       </button>
     );

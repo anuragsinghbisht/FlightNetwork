@@ -12,7 +12,19 @@ export const genresReducers = (state = [], action) => {
         });
         return genres;
       }, []);
+      localStorage.setItem('genres', JSON.stringify(genres));
       return genres;
+    }
+    case actionTypes.FILTER_GENRE: {
+      const searchValue = action.payload.trim().toLowerCase();
+      let genres  = JSON.parse(localStorage.getItem('genres'));
+      if(!action.payload) {
+        return genres;
+      }
+      return genres.filter(genre => {
+        genre = genre.toLowerCase();
+        return genre.includes(searchValue);
+      });
     }
     default:
       return state;

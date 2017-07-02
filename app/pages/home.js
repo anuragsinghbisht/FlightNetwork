@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <HeaderComponent />
-      <div className="container-fluid mt-5">
+      <div className="container-fluid mb-5">
         <MovieListComponent />
       </div>
     </div>

@@ -2,9 +2,11 @@
   "name": "flightworksfe",
   "version": "1.0.0",
   "description": "browse movies",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start:dev": "webpack-dev-server",
+    "start": "node server.js",
+    "build": "webpack -p"
   },
   "author": "Anurag Singh Bisht",
   "license": "ISC",
@@ -38,9 +40,9 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.17.2",
     "bootstrap": "^4.0.0-alpha.6",
-    "express": "^4.15.2",
+    "express": "^4.15.3",
     "file-loader": "^0.11.2",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.5.3",
